@@ -6,18 +6,6 @@
  */
 
 module.exports = {
-    name: {
-       type: 'String'
-    },
-    personal:{
-        type: 'Boolean',
-        default:false
-    },   
-    members:{
-        collection: 'user',
-        via: 'band',
-        through: 'userbands'
-    }
 
 };
 

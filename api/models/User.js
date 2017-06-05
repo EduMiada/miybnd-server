@@ -9,7 +9,7 @@
 
 
 module.exports = {
-
+  schema:true,
   attributes: {
         username: {
             type: 'string',
@@ -33,12 +33,19 @@ module.exports = {
             type: 'string',
             defaultsTo: ''
         },
-        photo: {
+        displayName: {
+		    type: 'string'
+	    },
+        avatar: {
             type: 'string',
             defaultsTo: '',
             url: true
         },
-        socialProfiles: {
+        providerData: {
+            type: 'json',
+            defaultsTo: {}
+        },
+	    additionalProvidersData: {
             type: 'json',
             defaultsTo: {}
         },
@@ -46,8 +53,31 @@ module.exports = {
             collection: 'band',
             via: 'member',
             through: 'userbands'
+        },
+        spotifyAuthCode: {
+            type:'string',
+            defaultsTo: ''
+        },
+        
+        profile: {
+            type: 'json',
+            defaultsTo: {   about:'', 
+                            instrument:'',
+                            experience:'', 
+                            styles:[],
+                            influencies:[]
+                        }
+        },
+
+        contact:{
+            type: 'json',
+            defaultsTo: {bio:'', city:'', area:'', zip:''}
+        },
+        channels:{
+            type: 'json',
+            defaultsTo:[{channel:'', name:'', url:''}]
         }
-       
+        
     },
     
     customToJSON: function () {

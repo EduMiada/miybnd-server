@@ -40,6 +40,7 @@ function _onLocalStrategyAuth(email, password, next) {
   //console.log('Passport Local', email);
 
   User.findOne({email: email})
+    .omit(['providerData','additionalProvidersData','spotifyAuthCode','contact'])
     .exec(function (error, user) {
       if (error) return next(error, false, {});
 

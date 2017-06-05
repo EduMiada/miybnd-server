@@ -6,8 +6,22 @@
  */
 
 module.exports = {
-
+  schema:true,
+  
   attributes: {
+    name: {
+       type: 'string',
+       required: true
+    },
+    personal:{
+        type: 'boolean',
+        defaultsTo:false
+    },   
+    members:{
+        collection: 'user',
+        via: 'band',
+        through: 'userbands'
+    }
 
 
   },

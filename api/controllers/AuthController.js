@@ -22,11 +22,21 @@ function _onPassportAuth(req, res, error, user, info) {
   if (error) return res.serverError(error);
   if (!user) return res.forbidden(null, info && info.code, info && info.message);
  
-  return res.ok({
-    // TODO: replace with new type of cipher service
-    token: CipherService.createToken(user),
-    user: user
+
+  sails.helpers.quoter().exec(function(err, quote){
+    //return res.ok({sucess: true, data: user, chuckQuote:quote});
+    return res.ok({
+        sucess:true, 
+        data: {
+            token: CipherService.createToken(user), 
+            user: user, 
+            chuckQuote:quote
+          }
+    });
   });
+
+
+
 }
  
 module.exports = {
@@ -55,6 +65,7 @@ module.exports = {
    * @param {Object} res Response object
    */
   signin: function (req, res) {
+    console.log('sign in');
     passport.authenticate('local', _onPassportAuth.bind(this, req, res))(req, res);
   },
 };
